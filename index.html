@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHK Master-Tool - Kalkulation, Werbeplan & Finanzierung</title>
+    <style>
+        :root {
+            --karcher-yellow: #ffcc00;
+            --karcher-yellow-hover: #e6b800;
+            --anthracite: #212529;
+            --anthracite-light: #2c3034;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --success-color: #28a745;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--anthracite);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            background-color: var(--karcher-yellow);
+            color: var(--anthracite);
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        header h1 {
+            font-size: 1.35rem;
+            color: #ffffff;
+            margin: 0 0 15px 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 6px;
+            background-color: var(--anthracite);
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            background-color: var(--anthracite-light);
+            color: #ffffff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 0.2s;
+        }
+
+        .nav-tab:hover {
+            background-color: #383d41;
+        }
+
+        .nav-tab.active {
+            background-color: var(--karcher-yellow);
+            color: var(--anthracite);
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-top: 4px solid var(--karcher-yellow);
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            font-size: 1.15rem;
+            margin-top: 0;
+            color: var(--anthracite);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sub-card {
+            background-color: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .sub-card h3 {
+            font-size: 0.9rem;
+            color: var(--anthracite);
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin: 0 0 10px 0;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--anthracite);
+            margin-bottom: 4px;
+        }
+
+        .input-box, select.input-box {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .input-box:focus {
+            outline: none;
+            border-color: var(--karcher-yellow);
+            box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.2);
+        }
+
+        .explanation {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            background: #fff3cd;
+            border-left: 3px solid #ffc107;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        .calc-row.result {
+            font-weight: bold;
+            color: var(--anthracite);
+            border-bottom: 2px solid var(--anthracite);
+            margin-top: 5px;
+            padding-top: 8px;
+        }
+
+        .btn {
+            background-color: var(--karcher-yellow);
+            color: var(--anthracite);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--karcher-yellow-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">IHK Master-Tool</span>
+        <header>
+            <h1>Kalkulation, Werbeplan & Finanzierung</h1>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('marketing', event)">Marketing</button>
+            <button class="nav-tab" onclick="switchTab('forward', event)">Vorwärts</button>
+            <button class="nav-tab" onclick="switchTab('backward', event)">Rückwärts</button>
+            <button class="nav-tab" onclick="switchTab('finance', event)">Finanzierung</button>
+        </nav>
+
+        <!-- MARKETING TAB -->
+        <main id="marketing" class="tab-content active">
+            <div class="card">
+                <h2>🛠️ Interaktiver Werbeplan-Baukasten</h2>
+                <p>Erstelle und strukturiere deinen prüfungsrelevanten Werbeplan Schritt für Schritt.</p>
+
+                <div class="sub-card">
+                    <h3>1. Werbeobjekt (Wofür wird geworben?)</h3>
+                    <p>Wähle zwischen Produktwerbung (Einzelprodukt), <strong>Programmwerbung</strong> (Sortiment) oder Unternehmenswerbung (Image/PR).</p>
+                    <div class="input-group">
+                        <select class="input-box">
+                            <option>Programmwerbung (Sortiment)</option>
+                            <option>Produktwerbung (Einzelprodukt)</option>
+                            <option>Unternehmenswerbung (Image/PR)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="sub-card">
+                    <h3>2. Werbeziele (Welcher Zweck?)</h3>
+                    <div class="input-group">
+                        <label>Ökonomische Ziele:</label>
+                        <input type="text" class="input-box" value="Umsatzsteigerung um 15%">
+                    </div>
+                    <div class="input-group">
+                        <label>Psychologische Ziele:</label>
+                        <input type="text" class="input-box" value="Steigerung des Bekanntheitsgrads">
+                    </div>
+                    <div class="explanation">
+                        💡 <strong>Erklärung:</strong> Ökonomische Ziele sind messbar (Umsatz, Gewinn, Marktanteil). Psychologische Ziele wirken im Bewusstsein des Kunden (Image, Bekanntheit).
+                    </div>
+                </div>
+
+                <div class="sub-card">
+                    <h3>3. Werbebudget & Zielgruppe</h3>
+                    <div class="input-group">
+                        <label>Zielgruppe:</label>
+                        <input type="text" class="input-box" value="B2B-Kunden & gewerbliche Einkäufer">
+                    </div>
+                    <div class="input-group">
+                        <label>Werbeetat (EUR):</label>
+                        <input type="number" class="input-box" value="25000">
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- VORWÄRTSKALKULATION TAB -->
+        <main id="forward" class="tab-content">
+            <div class="card">
+                <h2>📈 Vorwärtskalkulation (Handelswaren)</h2>
+                <p>Ermittlung des Netto- bzw. Bruttoverkaufspreises ausgehend vom Listeneinkaufspreis.</p>
+
+                <div class="sub-card">
+                    <div class="input-group">
+                        <label>Listeneinkaufspreis (LEP) in EUR:</label>
+                        <input type="number" id="f-lep" class="input-box" value="100.00" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Lieferantenrabatt (%):</label>
+                        <input type="number" id="f-rabatt" class="input-box" value="10" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Lieferskonto (%):</label>
+                        <input type="number" id="f-skonto" class="input-box" value="2" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Bezugskosten (EUR):</label>
+                        <input type="number" id="f-bezug" class="input-box" value="5.00" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Handlungskostenzuschlag (%):</label>
+                        <input type="number" id="f-hkz" class="input-box" value="20" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Gewinnzuschlag (%):</label>
+                        <input type="number" id="f-gewinn" class="input-box" value="10" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Kundenskonto (%):</label>
+                        <input type="number" id="f-kskonto" class="input-box" value="3" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Kundenrabatt (%):</label>
+                        <input type="number" id="f-krabatt" class="input-box" value="5" oninput="calculateForward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Umsatzsteuer (%):</label>
+                        <input type="number" id="f-ust" class="input-box" value="19" oninput="calculateForward()">
+                    </div>
+                </div>
+
+                <div class="sub-card">
+                    <h3>Kalkulationsergebnis</h3>
+                    <div class="calc-row"><span>Bezugspreis:</span> <span id="res-bezugspreis">0.00 EUR</span></div>
+                    <div class="calc-row"><span>Selbstkosten:</span> <span id="res-selbstkosten">0.00 EUR</span></div>
+                    <div class="calc-row"><span>Barverkaufspreis:</span> <span id="res-barverkauf">0.00 EUR</span></div>
+                    <div class="calc-row result"><span>Bruttoverkaufspreis:</span> <span id="res-brutto">0.00 EUR</span></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- RÜCKWÄRTSKALKULATION TAB -->
+        <main id="backward" class="tab-content">
+            <div class="card">
+                <h2>📉 Rückwärtskalkulation</h2>
+                <p>Ermittlung des maximal zulässigen Einkaufspreises ausgehend vom Markt- oder Zielverkaufspreis.</p>
+                <div class="sub-card">
+                    <div class="input-group">
+                        <label>Ziel-Bruttoverkaufspreis in EUR:</label>
+                        <input type="number" id="b-brutto" class="input-box" value="238.00" oninput="calculateBackward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Umsatzsteuer (%):</label>
+                        <input type="number" id="b-ust" class="input-box" value="19" oninput="calculateBackward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Kundenrabatt (%):</label>
+                        <input type="number" id="b-krabatt" class="input-box" value="5" oninput="calculateBackward()">
+                    </div>
+                    <div class="input-group">
+                        <label>Kundenskonto (%):</label>
+                        <input type="number" id="b-kskonto" class="input-box" value="3" oninput="calculateBackward()">
+                    </div>
+                </div>
+                <div class="sub-card">
+                    <h3>Ergebnis Rückwärtskalkulation</h3>
+                    <div class="calc-row result"><span>Max. Nettoerlös / Zielpreis:</span> <span id="res-zielnetto">0.00 EUR</span></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- FINANZIERUNG TAB -->
+        <main id="finance" class="tab-content">
+            <div class="card">
+                <h2>💶 Finanzierung & Kapitalbedarf</h2>
+                <p>Übersicht zur Investitionsplanung und Kapitalbedarfsermittlung für das Projekt.</p>
+                <div class="sub-card">
+                    <div class="input-group">
+                        <label>Anlagekapital (EUR):</label>
+                        <input type="number" class="input-box" value="50000">
+                    </div>
+                    <div class="input-group">
+                        <label>Umlaufkapital (EUR):</label>
+                        <input type="number" class="input-box" value="15000">
+                    </div>
+                    <div class="input-group">
+                        <label>Eigenkapitalquote (Ziel in %):</label>
+                        <input type="number" class="input-box" value="40">
+                    </div>
+                </div>
+                <button class="btn" onclick="alert('Daten erfolgreich berechnet und gespeichert!')">Planung speichern</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function switchTab(tabId, event) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function calculateForward() {
+            let lep = parseFloat(document.getElementById('f-lep').value) || 0;
+            let rabatt = parseFloat(document.getElementById('f-rabatt').value) || 0;
+            let skonto = parseFloat(document.getElementById('f-skonto').value) || 0;
+            let bezug = parseFloat(document.getElementById('f-bezug').value) || 0;
+            let hkz = parseFloat(document.getElementById('f-hkz').value) || 0;
+            let gewinn = parseFloat(document.getElementById('f-gewinn').value) || 0;
+            let kskonto = parseFloat(document.getElementById('f-kskonto').value) || 0;
+            let krabatt = parseFloat(document.getElementById('f-krabatt').value) || 0;
+            let ust = parseFloat(document.getElementById('f-ust').value) || 0;
+
+            let zep = lep * (1 - rabatt / 100);
+            let bezugspreis = (zep * (1 - skonto / 100)) + bezug;
+            let selbstkosten = bezugspreis * (1 + hkz / 100);
+            let barverkauf = selbstkosten * (1 + gewinn / 100);
+            
+            let zielverkauf = barverkauf / (1 - kskonto / 100);
+            let listenziel = zielverkauf / (1 - krabatt / 100);
+            let brutto = listenziel * (1 + ust / 100);
+
+            document.getElementById('res-bezugspreis').innerText = bezugspreis.toFixed(2) + ' EUR';
+            document.getElementById('res-selbstkosten').innerText = selbstkosten.toFixed(2) + ' EUR';
+            document.getElementById('res-barverkauf').innerText = barverkauf.toFixed(2) + ' EUR';
+            document.getElementById('res-brutto').innerText = brutto.toFixed(2) + ' EUR';
+        }
+
+        function calculateBackward() {
+            let brutto = parseFloat(document.getElementById('b-brutto').value) || 0;
+            let ust = parseFloat(document.getElementById('b-ust').value) || 0;
+            let net = brutto / (1 + ust / 100);
+            document.getElementById('res-zielnetto').innerText = net.toFixed(2) + ' EUR';
+        }
+
+        calculateForward();
+        calculateBackward();
+    </script>
+</body>
+</html>
