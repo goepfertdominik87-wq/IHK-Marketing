@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHK Prüfungstrainer • Industriekaufmann Master-Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anthrazit: "#212529",
+                        kaercher: "#FFCC00"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 text-anthrazit font-sans antialiased pb-16">
+    <header class="bg-anthrazit text-white border-b-4 border-kaercher shadow-lg py-4 px-4 mb-6">
+        <div class="max-w-2xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="w-full sm:w-auto flex justify-between items-center">
+                <div>
+                    <span class="bg-kaercher text-anthrazit text-xs uppercase px-2 py-0.5 rounded font-bold">IHK Master-Tool</span>
+                    <h1 class="text-lg sm:text-xl font-black mt-1">Marketing, Kalkulation, KLR & Finanzierung</h1>
+                </div>
+            </div>
+            <div class="flex bg-gray-800 rounded-lg p-1 text-xs w-full sm:w-auto justify-center overflow-x-auto gap-1">
+                <button onclick="switchTab('marketing')" id="tab-btn-marketing" class="px-3 py-1.5 rounded-md font-bold text-gray-300 transition whitespace-nowrap">Marketing</button>
+                <button onclick="switchTab('forward')" id="tab-btn-forward" class="px-3 py-1.5 rounded-md font-bold text-gray-300 transition whitespace-nowrap">Vorwärts</button>
+                <button onclick="switchTab('backward')" id="tab-btn-backward" class="px-3 py-1.5 rounded-md font-bold text-gray-300 transition whitespace-nowrap">Rückwärts</button>
+                <button onclick="switchTab('klr')" id="tab-btn-klr" class="px-3 py-1.5 rounded-md font-bold text-gray-300 transition whitespace-nowrap">KLR & BAB</button>
+                <button onclick="switchTab('kredit')" id="tab-btn-kredit" class="px-3 py-1.5 rounded-md font-bold text-gray-300 transition whitespace-nowrap">Kreditwesen</button>
+                <button onclick="switchTab('finanzierung')" id="tab-btn-finanzierung" class="px-3 py-1.5 rounded-md font-bold bg-kaercher text-anthrazit transition whitespace-nowrap">Finanzierung</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 space-y-6">
+
+        <!-- TAB 1: MARKETING & WERBEPLAN-BAUKASTEN -->
+        <div id="tab-marketing" class="space-y-6 hidden">
+            <!-- INTERAKTIVER WERBEPLAN-BAUKASTEN -->
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher">
+                <h2 class="text-lg font-black text-anthrazit mb-1">🛠️ Interaktiver Werbeplan-Baukasten</h2>
+                <p class="text-xs text-gray-500 mb-4">Erstelle und strukturiere deinen prüfungsrelevanten Werbeplan Schritt für Schritt.</p>
+                
+                <div class="space-y-4 text-sm">
+                    <div class="p-3 bg-gray-50 rounded-lg border">
+                        <label class="block text-xs font-bold uppercase text-anthrazit mb-1">1. Werbeobjekt (Wofür wird geworben?)</label>
+                        <select id="wp_objekt" class="w-full border rounded-lg p-2 text-xs bg-white font-medium">
+                            <option>Programmwerbung (Sortiment)</option>
+                            <option>Produktwerbung (Einzelprodukt)</option>
+                            <option>Unternehmenswerbung (Image/PR)</option>
+                        </select>
+                        <span class="text-[11px] text-gray-500 mt-1 block">💡 <em>Erklärung:</em> Unterscheidung in Produktwerbung (Einzelprodukt), Programmwerbung (Sortiment) oder Unternehmenswerbung (Image/PR).</span>
+                    </div>
+
+                    <div class="p-3 bg-gray-50 rounded-lg border">
+                        <label class="block text-xs font-bold uppercase text-anthrazit mb-1">2. Werbeziele (Welcher Zweck?)</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
+                            <div>
+                                <span class="text-[11px] font-bold text-gray-600">Ökonomische Ziele:</span>
+                                <input type="text" id="wp_oek" value="Umsatzsteigerung um 15%" class="w-full border rounded-lg p-1.5 text-xs bg-white">
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold text-gray-600">Psychologische Ziele:</span>
+                                <input type="text" id="wp_psy" value="Steigerung des Bekanntheitsgrads" class="w-full border rounded-lg p-1.5 text-xs bg-white">
+                            </div>
+                        </div>
+                        <span class="text-[11px] text-gray-500 mt-1 block">💡 <em>Erklärung:</em> Ökonomische Ziele sind messbar (Umsatz, Gewinn, Marktanteil). Psychologische Ziele wirken im Kopf (Image, Bekanntheit, Kundentreue).</span>
+                    </div>
+
+                    <div class="p-3 bg-gray-50 rounded-lg border">
+                        <label class="block text-xs font-bold uppercase text-anthrazit mb-1">3. Werbezielgruppe (An wen richtet sich die Werbung?)</label>
+                        <input type="text" id="wp_zielgruppe" value="Hausbesitzer & Heimwerker (B2C), Alter 30-65 Jahre" class="w-full border rounded-lg p-2 text-xs bg-white font-medium">
+                        <span class="text-[11px] text-gray-500 mt-1 block">💡 <em>Erklärung:</em> Genaue Marktsegmentierung nach demografischen, psychografischen oder geografischen Merkmalen, um Streuverluste zu minimieren.</span>
+                    </div>
+
+                    <div class="p-3 bg-gray-50 rounded-lg border space-y-2">
+                        <label class="block text-xs font-bold uppercase text-anthrazit">4. Werbemittel & Mediaplanung (Womit & Wo?)</label>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div>
+                                <span class="text-gray-600 block">Online / Social Media (€):</span>
+                                <input type="number" step="0.01" id="wp_m_online" value="15000.00" class="wp-budget w-full border rounded p-1.5 bg-white font-bold">
+                            </div>
+                            <div>
+                                <span class="text-gray-600 block">Print / Fachmagazine (€):</span>
+                                <input type="number" step="0.01" id="wp_m_print" value="10000.00" class="wp-budget w-full border rounded p-1.5 bg-white font-bold">
+                            </div>
+                            <div>
+                                <span class="text-gray-600 block">Messen / Events (€):</span>
+                                <input type="number" step="0.01" id="wp_m_messe" value="7000.00" class="wp-budget w-full border rounded p-1.5 bg-white font-bold">
+                            </div>
+                            <div>
+                                <span class="text-gray-600 block">Sonstige Streumittel (€):</span>
+                                <input type="number" step="0.01" id="wp_m_sonst" value="3000.00" class="wp-budget w-full border rounded p-1.5 bg-white font-bold">
+                            </div>
+                        </div>
+                        <div class="pt-2 border-t flex justify-between items-center text-xs font-mono font-bold">
+                            <span>Gesamtes Werbebudget:</span>
+                            <span id="wp_total_budget" class="text-green-700 text-sm">35.000,00 €</span>
+                        </div>
+                        <span class="text-[11px] text-gray-500 block">💡 <em>Erklärung:</em> Werbemittel sind die konkreten Wahrnehmungsträger (Anzeige, Spot). Werbeträger sind die Medien (Zeitschrift, Plattform).</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BCG-MATRIX: RELATIVER MARKTANTEIL & MARKTWACHSTUM -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="font-black text-base border-b pb-2 mb-4">📊 BCG-Matrix: Relativer Marktanteil & Marktwachstum</h3>
+                <p class="text-xs text-gray-500 mb-4">Analyse der Produktpositionierung und Portfolio-Steuerung im Markt.</p>
+                <div class="space-y-3 text-sm">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Eigener Umsatz (€)</label>
+                            <input type="number" step="0.01" id="bcg_own" value="2000000.00" class="bcg-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Umsatz größter Wettbewerber (€)</label>
+                            <input type="number" step="0.01" id="bcg_comp" value="1500000.00" class="bcg-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Marktvolumen Vorjahr (€)</label>
+                            <input type="number" step="0.01" id="bcg_m1" value="10000000.00" class="bcg-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Marktvolumen aktuelles Jahr (€)</label>
+                            <input type="number" step="0.01" id="bcg_m2" value="11500000.00" class="bcg-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg border space-y-2 text-xs font-mono">
+                    <div>
+                        <div>Relativer Marktanteil: <strong id="res_rel_ma" class="text-anthrazit">0,00</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Eigener Umsatz / Umsatz des größten Wettbewerbers (Wert > 1 = Marktführer)</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div>Marktwachstum: <strong id="res_mw" class="text-anthrazit">0,0%</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> ((Marktvolumen aktuelles Jahr - Marktvolumen Vorjahr) / Marktvolumen Vorjahr) * 100</div>
+                    </div>
+                    <div class="border-t pt-2 font-bold">
+                        <div>BCG-Klassifizierung: <span id="res_bcg_class" class="text-green-700">-</span></div>
+                    </div>
+                    <span class="text-[11px] text-gray-500 block mt-2">💡 <em>Erklärung:</em> Die Boston Consulting Group (BCG) Matrix verknüpft den relativen Marktanteil mit dem Marktwachstum, um strategische Geschäftseinheiten in Stars, Cash Cows, Question Marks und Poor Dogs einzuteilen.</span>
+                </div>
+            </div>
+
+            <!-- DIE 4 PS BUDGETIERUNG -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-lg font-black text-anthrazit mb-1">Die 4 Ps Marketing-Budgetierung</h2>
+                <p class="text-xs text-gray-500 mb-4">Aufteilung des Gesamtbudgets nach dem Marketing-Mix.</p>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Produktpolitik (€) <span class="font-normal text-gray-400">- Qualität, Design, Service</span></label>
+                        <input type="number" step="0.01" id="p_prod" value="10000.00" class="p-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Preispolitik (€) <span class="font-normal text-gray-400">- Listenpreise, Rabatte, Zahlungsbedingungen</span></label>
+                        <input type="number" step="0.01" id="p_preis" value="5000.00" class="p-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Distributionspolitik (€) <span class="font-normal text-gray-400">- Transportwege, Lagerhaltung, Absatzorgane</span></label>
+                        <input type="number" step="0.01" id="p_dist" value="15000.00" class="p-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Kommunikationspolitik (€) <span class="font-normal text-gray-400">- Werbung, PR, Verkaufsförderung</span></label>
+                        <input type="number" step="0.01" id="p_komm_budget" value="35000.00" class="p-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                </div>
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg border space-y-2 font-mono text-xs">
+                    <div class="flex justify-between text-sm font-bold text-anthrazit"><span>Gesamtbudget (4 Ps):</span><strong id="res_4ps_total">0,00 €</strong></div>
+                    <div class="text-[11px] text-indigo-600 mt-1">📐 <em>Formel:</em> Produkt + Preis + Distribution + Kommunikation</div>
+                    <span class="text-[11px] text-gray-500 block mt-2">💡 <em>Erklärung:</em> Der Marketing-Mix (Product, Price, Place, Promotion) bündelt alle operativen Instrumente, um Kundenbedürfnisse zielgerichtet zu befriedigen und den Absatz zu steuern.</span>
+                </div>
+            </div>
+
+            <!-- KAMPAGNEN CONTROLLING -->
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="font-black text-base border-b pb-2 mb-4">Rechner: Kampagnen-Controlling & Erfolgskontrolle</h3>
+                <p class="text-xs text-gray-500 mb-4">Überprüfung der wirtschaftlichen Effizienz der Werbemaßnahme.</p>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gesamtumsatz Ist (€)</label>
+                        <input type="number" step="0.01" id="m_umsatz" value="5000000.00" class="m-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Kommunikationskosten / Budget (€)</label>
+                        <input type="number" step="0.01" id="m_komm" value="35000.00" class="m-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">DB-Satz (%)</label>
+                        <input type="number" step="0.01" id="m_db" value="40.00" class="m-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Direkter Mehrumsatz (€)</label>
+                        <input type="number" step="0.01" id="m_mehr" value="35000.00" class="m-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                </div>
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg border space-y-2 text-xs font-mono">
+                    <div>
+                        <div>Werbeanteil am Umsatz: <strong id="res_anteil" class="text-anthrazit">0,0%</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> (Kommunikationskosten / Gesamtumsatz) * 100</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div>Kampagnengewinn: <strong id="res_gewinn" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> (Mehrumsatz * DB-Satz) - Kommunikationskosten</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div>Break-Even Mehrumsatz: <strong id="res_break" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Kommunikationskosten / DB-Satz</div>
+                    </div>
+                    <span class="text-[11px] text-gray-500 block mt-2">💡 <em>Erklärung:</em> Das Kampagnen-Controlling misst den ökonomischen Erfolg von Werbemaßnahmen, indem Werbeaufwand und generierter Deckungsbeitrag gegenübergestellt werden.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: VORWÄRTSKALKULATION -->
+        <div id="tab-forward" class="space-y-6 hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher">
+                <h2 class="text-lg font-black text-anthrazit mb-1">📈 IHK Vorwärtskalkulation</h2>
+                <p class="text-xs text-gray-500 mb-4">Ermittlung des Listenverkaufspreises ausgehend von den Herstellkosten.</p>
+                
+                <div class="space-y-3 text-sm">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Materialeinzelkosten (€)</label>
+                            <input type="number" step="0.01" id="f_mek" value="17200.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Materialgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="f_mgk" value="9.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fertigungslöhne (€)</label>
+                            <input type="number" step="0.01" id="f_flo" value="21400.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fertigungsgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="f_fgk" value="110.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Sondereinzelkosten Fertigung (SEKF) (€)</label>
+                            <input type="number" step="0.01" id="f_sekf" value="1400.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Verwaltungsgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="f_vwgk" value="18.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Vertriebsgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="f_vertgk" value="6.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Sondereinzelkosten Vertrieb (SEKV) (€)</label>
+                            <input type="number" step="0.01" id="f_sekv" value="890.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gewinn (%)</label>
+                            <input type="number" step="0.01" id="f_gewinn" value="15.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Kundenkonto / Skonto (%)</label>
+                            <input type="number" step="0.01" id="f_skonto" value="2.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Vertreterprovision (%)</label>
+                            <input type="number" step="0.01" id="f_prov" value="7.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Kundenrabatt (%)</label>
+                            <input type="number" step="0.01" id="f_rabatt" value="10.00" class="f-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-gray-50 p-4 rounded-xl border space-y-2 text-xs font-mono">
+                    <div>
+                        <div class="flex justify-between"><span>Materialkosten:</span><strong id="out_f_mat" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> MEK + (MEK * MGK-Satz)</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Fertigungskosten (inkl. SEKF):</span><strong id="out_f_fert" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> (Fertigungslöhne * (1 + FGK-Satz)) + SEKF</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Herstellkosten:</span><strong id="out_f_herstell" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Materialkosten + Fertigungskosten</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Selbstkosten (inkl. SEKV):</span><strong id="out_f_selbst" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Herstellkosten + VwGK + VertGK + SEKV</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Barverkaufspreis:</span><strong id="out_f_bar" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Selbstkosten + Gewinn</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Zielverkaufspreis:</span><strong id="out_f_ziel" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Barverkaufspreis / (100 - Skonto - Provision) * 100</div>
+                    </div>
+                    <div class="border-t pt-2 text-sm font-bold text-green-700">
+                        <div class="flex justify-between"><span>Listenverkaufspreis:</span><strong id="out_f_listen">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 font-normal mt-0.5">📐 <em>Formel:</em> Zielverkaufspreis / (100 - Rabatt) * 100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: RÜCKWÄRTSKALKULATION -->
+        <div id="tab-backward" class="space-y-6 hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher">
+                <h2 class="text-lg font-black text-anthrazit mb-1">📉 IHK Rückwärtskalkulation</h2>
+                <p class="text-xs text-gray-500 mb-4">Ermittlung der maximal erlaubten Materialeinzelkosten ausgehend vom Listenverkaufspreis.</p>
+                
+                <div class="space-y-3 text-sm">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Listenverkaufspreis (€)</label>
+                            <input type="number" step="0.01" id="b_listen" value="127480.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Kundenrabatt (%)</label>
+                            <input type="number" step="0.01" id="b_rabatt" value="10.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Vertreterprovision (%)</label>
+                            <input type="number" step="0.01" id="b_prov" value="7.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Kundenkonto / Skonto (%)</label>
+                            <input type="number" step="0.01" id="b_skonto" value="2.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gewinn (%)</label>
+                            <input type="number" step="0.01" id="b_gewinn" value="15.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Verwaltungsgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="b_vwgk" value="19.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Vertriebsgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="b_vertgk" value="6.80" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Sondereinzelkosten Vertrieb (SEKV) (€)</label>
+                            <input type="number" step="0.01" id="b_sekv" value="940.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fertigungslöhne (€)</label>
+                            <input type="number" step="0.01" id="b_flo" value="19800.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fertigungsgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="b_fgk" value="108.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Sondereinzelkosten Fertigung (SEKF) (€)</label>
+                            <input type="number" step="0.01" id="b_sekf" value="900.00" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Materialgemeinkosten (%)</label>
+                            <input type="number" step="0.01" id="b_mgk" value="8.50" class="b-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-gray-50 p-4 rounded-xl border space-y-2 text-xs font-mono">
+                    <div>
+                        <div class="flex justify-between"><span>Zielverkaufspreis:</span><strong id="out_b_ziel" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Listenverkaufspreis * (1 - Rabatt / 100)</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Barverkaufspreis:</span><strong id="out_b_bar" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Zielverkaufspreis * (1 - (Provision + Skonto) / 100)</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Selbstkosten:</span><strong id="out_b_selbst" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Barverkaufspreis / (1 + Gewinn / 100)</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Herstellkosten:</span><strong id="out_b_herstell" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> (Selbstkosten - SEKV) / (1 + (VwGK + VertGK) / 100)</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Fertigungskosten (inkl. SEKF):</span><strong id="out_b_fert" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> (Fertigungslöhne * (1 + FGK / 100)) + SEKF</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="flex justify-between"><span>Materialkosten:</span><strong id="out_b_mat" class="text-anthrazit">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 mt-0.5">📐 <em>Formel:</em> Herstellkosten - Fertigungskosten</div>
+                    </div>
+                    <div class="border-t pt-2 text-sm font-bold text-green-700">
+                        <div class="flex justify-between"><span>Max. Materialeinzelkosten (MEK):</span><strong id="out_b_mek">0,00 €</strong></div>
+                        <div class="text-[11px] text-indigo-600 font-normal mt-0.5">📐 <em>Formel:</em> Materialkosten / (1 + MGK / 100)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: KLR & BETRIEBSABRECHNUNGSBOGEN -->
+        <div id="tab-klr" class="space-y-6 hidden">
+            <!-- 1. BETRIEBSABRECHNUNGSBOGEN (BAB) -->
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher space-y-4">
+                <h2 class="text-lg font-black text-anthrazit flex items-center gap-2">
+                    <span>🏢</span> Betriebsabrechnungsbogen (BAB) – Eigene Unternehmensdaten
+                </h2>
+                <p class="text-xs text-gray-500">Trage deine primären Gemeinkosten, Bezugsgrößen und Sondereinzelkosten ein. Die Zuschlagssätze werden automatisch ermittelt.</p>
+
+                <div class="space-y-3 text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-gray-50 rounded-lg border">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gemeinkosten Material (€)</label>
+                            <input type="number" step="0.01" id="klr_gm" value="310000.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fertigungsmaterial (Basis) (€)</label>
+                            <input type="number" step="0.01" id="klr_fm" value="1500000.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-gray-50 rounded-lg border">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gemeinkosten Fertigung (€)</label>
+                            <input type="number" step="0.01" id="klr_gf" value="80540.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fertigungslöhne (Basis) (€)</label>
+                            <input type="number" step="0.01" id="klr_fl" value="300000.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                        </div>
+                    </div>
+
+                    <!-- IHK-konforme Sondereinzelkosten im BAB-Kontext -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-anthrazit mb-1">Sondereinzelkosten Fertigung (SEKF) (€)</label>
+                            <input type="number" step="0.01" id="klr_sekf" value="15000.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                            <span class="text-[10px] text-gray-500 mt-0.5 block">Zurechnung direkt auf Herstellkosten</span>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-anthrazit mb-1">Sondereinzelkosten Vertrieb (SEKV) (€)</label>
+                            <input type="number" step="0.01" id="klr_sekv" value="8500.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                            <span class="text-[10px] text-gray-500 mt-0.5 block">Zurechnung direkt auf Selbstkosten</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 bg-gray-50 rounded-lg border">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gemeinkosten Verwaltung (€)</label>
+                            <input type="number" step="0.01" id="klr_gv" value="102400.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gemeinkosten Vertrieb (€)</label>
+                            <input type="number" step="0.01" id="klr_gvert" value="71700.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Herstellkosten des Umsatzes (Basis für Vw/Vt) (€)</label>
+                        <input type="number" step="0.01" id="klr_hk_umsatz" value="2000000.00" class="klr-input w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                </div>
+
+                <!-- BAB ERGEBNISSE / ZUSCHLAGSSÄTZE -->
+                <div class="p-4 bg-anthrazit text-white rounded-lg space-y-2 font-mono text-xs">
+                    <div class="text-kaercher font-bold uppercase tracking-wider mb-2">Ermittelte Zuschlagssätze für die Kalkulation:</div>
+                    <div class="flex justify-between border-b border-gray-700 pb-1">
+                        <span>Materialgemeinkostensatz (MGK):</span>
+                        <strong id="res_mgk" class="text-kaercher text-sm">0,0%</strong>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-700 pb-1">
+                        <span>Fertigungsgemeinkostensatz (FGK):</span>
+                        <strong id="res_fgk" class="text-kaercher text-sm">0,0%</strong>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-700 pb-1">
+                        <span>Verwaltungsgemeinkostensatz (VwGK):</span>
+                        <strong id="res_vwgk" class="text-kaercher text-sm">0,0%</strong>
+                    </div>
+                    <div class="flex justify-between pt-1">
+                        <span>Vertriebsgemeinkostensatz (VertGK):</span>
+                        <strong id="res_vertgk" class="text-kaercher text-sm">0,0%</strong>
+                    </div>
+                </div>
+
+                <!-- FORMELN & ERKLÄRUNGEN FÜR BAB ZUSCHLAGSSÄTZE -->
+                <div class="p-4 bg-gray-50 rounded-lg border space-y-2 text-xs font-mono">
+                    <div>
+                        <div class="text-indigo-600">📐 <em>Formel MGK:</em> (Gemeinkosten Material / Fertigungsmaterial) * 100</div>
+                        <div class="text-indigo-600 mt-0.5">📐 <em>Formel FGK:</em> (Gemeinkosten Fertigung / Fertigungslöhne) * 100</div>
+                    </div>
+                    <div class="border-t pt-2">
+                        <div class="text-indigo-600">📐 <em>Formel VwGK:</em> (Gemeinkosten Verwaltung / Herstellkosten des Umsatzes) * 100</div>
+                        <div class="text-indigo-600 mt-0.5">📐 <em>Formel VertGK:</em> (Gemeinkosten Vertrieb / Herstellkosten des Umsatzes) * 100</div>
+                    </div>
+                    <div class="border-t pt-2 text-gray-600 font-sans">
+                        💡 <em>Erklärung:</em> Der Betriebsabrechnungsbogen (BAB) dient der Verteilung der primären Gemeinkosten auf die Kostenstellen. Die Zuschlagssätze setzen die Gemeinkosten ins prozentuale Verhältnis zur jeweiligen Bezugsbasis (z.B. Fertigungsmaterial oder Fertigungslöhne), um sie in der Vorwärts- und Rückwärtskalkulation verursachungsgerecht auf die Produkte zu verteilen.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. TEILKOSTENRECHNUNG & DECKUNGSBEITRAG -->
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher space-y-4">
+                <h2 class="text-lg font-black text-anthrazit flex items-center gap-2">
+                    <span>📊</span> Deckungsbeitragsrechnung & Preisuntergrenze
+                </h2>
+                <p class="text-xs text-gray-500">Schnellcheck für fixe vs. variable Kosten und den optimalen Stückdeckungsbeitrag.</p>
+
+                <div class="space-y-3 text-sm">
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Netto-Verkaufspreis (€)</label>
+                            <input type="number" step="0.01" id="db_preis" value="150.00" class="db-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Variable Stückkosten (€)</label>
+                            <input type="number" step="0.01" id="db_v_kosten" value="90.00" class="db-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fixe Gesamtkosten (€)</label>
+                        <input type="number" step="0.01" id="db_fix" value="120000.00" class="db-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                </div>
+
+                <div class="p-4 bg-gray-50 rounded-lg border space-y-2 font-mono text-xs">
+                    <div class="flex justify-between">
+                        <span>Stück-Deckungsbeitrag (db):</span>
+                        <strong id="res_db_stueck" class="text-anthrazit">0,00 €</strong>
+                    </div>
+                    <div class="flex justify-between border-t pt-2">
+                        <span>Absolute Preisuntergrenze (kurzfristig):</span>
+                        <strong id="res_pu_kurz" class="text-anthrazit">0,00 €</strong>
+                    </div>
+                    <div class="flex justify-between border-t pt-2 text-sm font-bold text-green-700">
+                        <span>Break-Even-Point (Stück):</span>
+                        <strong id="res_break_stueck">0 Stk.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: KREDITWESEN & FINANZIERUNGSBAUSTEINE -->
+        <div id="tab-kredit" class="space-y-6 hidden">
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher space-y-4">
+                <div class="border-b pb-3 mb-4">
+                    <span class="bg-kaercher text-anthrazit font-bold px-2 py-0.5 text-xs rounded uppercase">IHK Master-Tool</span>
+                    <h2 class="text-lg font-black text-anthrazit mt-1">Kreditwesen & Finanzierungsbausteine</h2>
+                    <p class="text-xs text-gray-500 mt-1">Wählen Sie eine Kreditvariante aus, um die Prinzipien und Dynamiken für Ihre IHK-Prüfung einzusehen.</p>
+                </div>
+                
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <label for="creditSelect" class="block font-bold text-anthrazit mb-2 text-xs uppercase">Wähle eine Kreditvariante aus:</label>
+                        <select id="creditSelect" onchange="showCreditInfo()" class="w-full p-3 border-2 border-gray-200 rounded-lg text-sm bg-white font-medium focus:border-kaercher focus:outline-none focus:ring-2 focus:ring-yellow-400/20">
+                            <option value="" disabled selected>-- Bitte wählen Sie eine Kreditart --</option>
+                            <option value="annuitaet">1. Annuitätendarlehen</option>
+                            <option value="endfaellig">2. Endfälliger Kredit</option>
+                            <option value="tilgung">3. Tilgungsdarlehen (Abzahlungsdarlehen)</option>
+                        </select>
+                    </div>
+
+                    <!-- 1. Annuitätendarlehen -->
+                    <div id="annuitaet" class="credit-info-box hidden mt-4 p-5 bg-gray-50 border border-gray-200 border-l-5 border-l-kaercher rounded-r-lg space-y-3">
+                        <h3 class="text-anthrazit font-bold text-base border-b-2 border-kaercher pb-1 inline-block">1. Annuitätendarlehen</h3>
+                        <p class="text-xs leading-relaxed"><strong>Einordnung:</strong> Das ist der absolute Standard bei den meisten Immobilien- und langfristigen Krediten.</p>
+                        <p class="text-xs leading-relaxed"><strong>Das Prinzip:</strong> Die Gesamtrate (die sogenannte Annuität), die du monatlich an die Bank zahlst, bleibt über die Zinsbindungsfrist konstant (z. B. immer genau 1.000 Euro).</p>
+                        <p class="text-xs leading-relaxed"><strong>Die Dynamik:</strong> Diese Rate setzt sich aus zwei Teilen zusammen: Zinsen und Tilgung. Da du mit jeder Rate einen Teil des Kredits abbezahlst, sinkt deine Restschuld. Weil die Zinsen immer auf die aktuelle Restschuld berechnet werden, sinkt der Zinsanteil in der Rate Monat für Monat. Automatisch steigt dadurch im Gegenzug der Tilgungsanteil bei gleichbleibender Gesamtrate an.</p>
+                    </div>
+
+                    <!-- 2. Endfälliger Kredit -->
+                    <div id="endfaellig" class="credit-info-box hidden mt-4 p-5 bg-gray-50 border border-gray-200 border-l-5 border-l-kaercher rounded-r-lg space-y-3">
+                        <h3 class="text-anthrazit font-bold text-base border-b-2 border-kaercher pb-1 inline-block">2. Endfälliger Kredit</h3>
+                        <p class="text-xs leading-relaxed"><strong>Einordnung:</strong> Das Gegenstück zum klassischen Raten- oder Annuitätendarlehen.</p>
+                        <p class="text-xs leading-relaxed"><strong>Das Prinzip:</strong> Während der gesamten Laufzeit zahlst du monatlich nur die Zinsen für den geliehenen Betrag. Es findet währenddessen keinerlei Tilgung statt.</p>
+                        <p class="text-xs leading-relaxed"><strong>Das Ende:</strong> Die gesamte Kreditsumme wird erst am Ende der Laufzeit auf einen Schlag (in einer einzigen Summe) zurückgezahlt.</p>
+                        <p class="text-xs leading-relaxed"><strong>Typischer Einsatz:</strong> Häufig in Kombination mit einem Anlageprodukt (z. B. einer Kapitallebensversicherung oder einem Bausparvertrag), in das parallel eingezahlt wird, um die Endsumme zu bedienen, oder bei Zwischenfinanzierungen.</p>
+                    </div>
+
+                    <!-- 3. Tilgungsdarlehen -->
+                    <div id="tilgung" class="credit-info-box hidden mt-4 p-5 bg-gray-50 border border-gray-200 border-l-5 border-l-kaercher rounded-r-lg space-y-3">
+                        <h3 class="text-anthrazit font-bold text-base border-b-2 border-kaercher pb-1 inline-block">3. Tilgungsdarlehen (Abzahlungsdarlehen)</h3>
+                        <p class="text-xs leading-relaxed"><strong>Einordnung:</strong> Das ist genau die Variante mit gleichbleibender Tilgung bei sinkenden (oder variablen) Zinsen.</p>
+                        <p class="text-xs leading-relaxed"><strong>Das Prinzip:</strong> Der Tilgungsbetrag, den du monatlich zahlst, ist starr fixiert (z. B. immer genau 500 Euro im Monat).</p>
+                        <p class="text-xs leading-relaxed"><strong>Die Dynamik:</strong> Da die Tilgung fest ist und die Restschuld sinkt, sinkt auch der Zinsanteil kontinuierlich. Das führt zu einem mathematischen Effekt: Die monatliche Gesamtrate startet hoch und sinkt mit jedem Monat ab, weil du am Anfang viel Zinsen zahlst und am Ende kaum noch. (Das Gegenteil zum Annuitätendarlehen, wo die Rate gleich bleibt).</p>
+                    </div>
+                </div>
+
+                <!-- Separate Position: Disagio -->
+                <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5 relative border-l-5 border-l-amber-500 space-y-2">
+                    <h3 class="text-anthrazit font-bold text-base flex items-center justify-between">
+                        <span>4. Disagio</span>
+                        <span class="bg-kaercher text-anthrazit text-[10px] px-2 py-0.5 rounded font-bold uppercase">Sparte / Kostenfaktor</span>
+                    </h3>
+                    <p class="text-xs leading-relaxed"><strong>Wichtiger Hinweis:</strong> Das ist keine eigene Kreditart, sondern ein wichtiger Kosten- und Abrechnungsfaktor.</p>
+                    <p class="text-xs leading-relaxed"><strong>Das Prinzip:</strong> Das Disagio ist ein Zinsabschlag oder eine Bearbeitungsgebühr, die sofort bei Auszahlung des Kredits einbehalten wird.</p>
+                    <p class="text-xs leading-relaxed"><strong>Beispiel:</strong> Du nimmst einen Kredit über 100.000 Euro auf, vereinbarst aber ein Disagio von 2%. Das bedeutet, die Bank zahlt dir effektiv nur 98.000 Euro aus (Auszahlungsbetrag), du musst aber am Ende die vollen 100.000 Euro zurückzahlen.</p>
+                    <p class="text-xs leading-relaxed"><strong>Wozu das gut ist:</strong> Banken nutzen das manchmal, um den nominalen Zinssatz optisch niedriger erscheinen zu lassen oder um sich Refinanzierungskosten vorab zu sichern. Steuerlich kann ein Disagio bei Vermietung und Verpachtung zudem sofort als Werbungskosten geltend gemacht werden.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: FINANZIERUNGS- & KAPITALBEDARFSPLANER -->
+        <div id="tab-finanzierung" class="space-y-6">
+            <!-- STATUS BANNER -->
+            <div id="status_card" class="rounded-xl shadow-md p-6 border transition-all duration-300 bg-green-50 border-green-200 text-center">
+                <div id="status_icon" class="text-2xl mb-1">🎉</div>
+                <h2 id="status_title" class="text-sm font-bold uppercase tracking-wider text-green-800">Finanzierung gesichert!</h2>
+                <div id="status_value" class="text-2xl font-black text-green-900 mt-1">+20.000,00 €</div>
+                <p id="status_text" class="text-xs text-green-700 mt-1">Hervorragend. Alle geplanten Kosten sind durch deine Finanzierungsquellen abgedeckt.</p>
+            </div>
+
+            <!-- 1. KAPITALBEDARF -->
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher space-y-4">
+                <h2 class="text-lg font-black text-anthrazit flex items-center gap-2">
+                    <span>📈</span> 1. Kapitalbedarf
+                </h2>
+                <p class="text-xs text-gray-500">Erfassung aller einmaligen und laufenden Gründungskosten.</p>
+
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Gründungskosten (€)</label>
+                        <input type="number" step="0.01" id="k_gruendung" value="150000.00" class="kap-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Betriebsmittel / Anlaufkosten (€)</label>
+                        <input type="number" step="0.01" id="k_betrieb" value="5000.00" class="kap-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Liquiditätsreserve (€)</label>
+                        <input type="number" step="0.01" id="k_reserve" value="7500.00" class="kap-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+
+                    <div class="pt-2 border-t border-dashed">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold uppercase text-anthrazit">Eigene Investitionen / Kosten</span>
+                            <button onclick="addCustomItem('kapital')" class="bg-kaercher text-anthrazit text-xs px-2.5 py-1 rounded font-bold hover:bg-yellow-400 transition">+ Hinzufügen</button>
+                        </div>
+                        <div id="custom_kapital_list" class="space-y-2">
+                            <div class="flex gap-2 custom-kap-row">
+                                <input type="text" value="Büroausstattung & Server" class="w-2/3 border rounded-lg p-1.5 text-xs bg-white font-medium c-name">
+                                <input type="number" step="0.01" value="15000.00" class="w-1/3 border rounded-lg p-1.5 text-xs bg-gray-50 font-bold c-val kap-calc">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg border flex justify-between items-center font-mono">
+                    <span class="text-xs font-bold uppercase text-anthrazit">Gesamter Bedarf:</span>
+                    <span id="res_total_bedarf" class="text-base font-black text-anthrazit">0,00 €</span>
+                </div>
+            </div>
+
+            <!-- 2. FINANZIERUNG -->
+            <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-kaercher space-y-4">
+                <h2 class="text-lg font-black text-anthrazit flex items-center gap-2">
+                    <span>📉</span> 2. Finanzierung
+                </h2>
+                <p class="text-xs text-gray-500">Deckung des Kapitals durch Eigen- und Fremdmittel.</p>
+
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Eigenkapital (€)</label>
+                        <input type="number" step="0.01" id="f_eigen" value="10000.00" class="fin-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Fördergelder / Zuschüsse (€)</label>
+                        <input type="number" step="0.01" id="f_foerder" value="35000.00" class="fin-calc w-full border rounded-lg p-2 font-bold bg-gray-50">
+                    </div>
+
+                    <div class="p-3 bg-gray-50 rounded-lg border space-y-2">
+                        <label class="block text-xs font-bold uppercase text-anthrazit">Bankkredit / Fremdkapital (€)</label>
+                        <input type="number" step="0.01" id="f_kredit" value="100000.00" class="fin-calc w-full border rounded-lg p-2 font-bold bg-white">
+                        <div class="grid grid-cols-2 gap-2 pt-1">
+                            <div>
+                                <span class="text-[11px] text-gray-600 block">Zinssatz (% p.a.)</span>
+                                <input type="number" step="0.01" id="f_zins" value="5.00" class="fin-calc w-full border rounded p-1.5 bg-white font-bold">
+                            </div>
+                            <div>
+                                <span class="text-[11px] text-gray-600 block">Laufzeit (Jahre)</span>
+                                <input type="number" step="1" id="f_jahre" value="5" class="fin-calc w-full border rounded p-1.5 bg-white font-bold">
+                            </div>
+                        </div>
+                        <div class="pt-2 border-t flex justify-between items-center text-xs font-mono">
+                            <span class="text-gray-600">Monatliche Rate (Annuität):</span>
+                            <strong id="res_rate" class="text-anthrazit text-sm">0,00 € / Mon.</strong>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-dashed">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold uppercase text-anthrazit">Weitere Finanzierungsquellen</span>
+                            <button onclick="addCustomItem('finanzierung')" class="bg-kaercher text-anthrazit text-xs px-2.5 py-1 rounded font-bold hover:bg-yellow-400 transition">+ Hinzufügen</button>
+                        </div>
+                        <div id="custom_finanzierung_list" class="space-y-2">
+                            <div class="flex gap-2 custom-fin-row">
+                                <input type="text" value="Zinserträge" class="w-2/3 border rounded-lg p-1.5 text-xs bg-white font-medium c-name">
+                                <input type="number" step="0.01" value="2500.00" class="w-1/3 border rounded-lg p-1.5 text-xs bg-gray-50 font-bold c-val fin-calc">
+                            </div>
+                            <div class="flex gap-2 custom-fin-row">
+                                <input type="text" value="Disagokredit" class="w-2/3 border rounded-lg p-1.5 text-xs bg-white font-medium c-name">
+                                <input type="number" step="0.01" value="50000.00" class="w-1/3 border rounded-lg p-1.5 text-xs bg-gray-50 font-bold c-val fin-calc">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-4 bg-gray-50 rounded-lg border flex justify-between items-center font-mono">
+                    <span class="text-xs font-bold uppercase text-anthrazit">Gesamte Finanzierung:</span>
+                    <span id="res_total_fin" class="text-base font-black text-green-700">0,00 €</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const fmt = (num) => new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(num) + " €";
+
+        function switchTab(tab) {
+            ["marketing", "forward", "backward", "klr", "kredit", "finanzierung"].forEach(t => {
+                const el = document.getElementById("tab-" + t);
+                const btn = document.getElementById("tab-btn-" + t);
+                if (el) el.classList.add("hidden");
+                if (btn) btn.className = "px-3 py-1.5 rounded-md font-bold text-gray-300 transition whitespace-nowrap";
+            });
+            const activeEl = document.getElementById("tab-" + tab);
+            const activeBtn = document.getElementById("tab-btn-" + tab);
+            if (activeEl) activeEl.classList.remove("hidden");
+            if (activeBtn) activeBtn.className = "px-3 py-1.5 rounded-md font-bold bg-kaercher text-anthrazit transition whitespace-nowrap";
+        }
+
+        function showCreditInfo() {
+            document.querySelectorAll('.credit-info-box').forEach(function(box) {
+                box.classList.add('hidden');
+            });
+
+            var selectElement = document.getElementById('creditSelect');
+            var selectedValue = selectElement.value;
+            
+            if (selectedValue) {
+                var activeBox = document.getElementById(selectedValue);
+                if (activeBox) {
+                    activeBox.classList.remove('hidden');
+                }
+            }
+        }
+
+        function calcWerbeplanBudget() {
+            const online = parseFloat(document.getElementById("wp_m_online").value) || 0;
+            const print = parseFloat(document.getElementById("wp_m_print").value) || 0;
+            const messe = parseFloat(document.getElementById("wp_m_messe").value) || 0;
+            const sonst = parseFloat(document.getElementById("wp_m_sonst").value) || 0;
+            const total = online + print + messe + sonst;
+            document.getElementById("wp_total_budget").innerText = fmt(total);
+            document.getElementById("m_komm").value = total.toFixed(2);
+            document.getElementById("p_komm_budget").value = total.toFixed(2);
+            calcMarketing();
+            calc4Ps();
+        }
+
+        function calcBCG() {
+            const own = parseFloat(document.getElementById("bcg_own").value) || 0;
+            const comp = parseFloat(document.getElementById("bcg_comp").value) || 1;
+            const m1 = parseFloat(document.getElementById("bcg_m1").value) || 1;
+            const m2 = parseFloat(document.getElementById("bcg_m2").value) || 0;
+
+            const relMA = own / comp;
+            const marktwachstum = ((m2 - m1) / m1) * 100;
+
+            document.getElementById("res_rel_ma").innerText = relMA.toFixed(2).replace(".", ",");
+            document.getElementById("res_mw").innerText = marktwachstum.toFixed(1).replace(".", ",") + "%";
+
+            let classification = "";
+            const highMA = relMA >= 1.0;
+            const highMW = marktwachstum >= 10.0;
+
+            if (highMA && highMW) {
+                classification = "⭐ Star (Hoher Marktanteil, hohes Wachstum)";
+            } else if (highMA && !highMW) {
+                classification = "🐄 Cash Cow (Hoher Marktanteil, geringes Wachstum)";
+            } else if (!highMA && highMW) {
+                classification = "❓ Question Mark (Geringer Marktanteil, hohes Wachstum)";
+            } else {
+                classification = "🐕 Poor Dog (Geringer Marktanteil, geringes Wachstum)";
+            }
+            document.getElementById("res_bcg_class").innerText = classification;
+        }
+
+        function calc4Ps() {
+            const prod = parseFloat(document.getElementById("p_prod").value) || 0;
+            const preis = parseFloat(document.getElementById("p_preis").value) || 0;
+            const dist = parseFloat(document.getElementById("p_dist").value) || 0;
+            const komm = parseFloat(document.getElementById("p_komm_budget").value) || 0;
+            const total = prod + preis + dist + komm;
+            document.getElementById("res_4ps_total").innerText = fmt(total);
+        }
+
+        function calcMarketing() {
+            const umsatz = parseFloat(document.getElementById("m_umsatz").value) || 1;
+            const komm = parseFloat(document.getElementById("m_komm").value) || 0;
+            const db = (parseFloat(document.getElementById("m_db").value) || 0) / 100;
+            const mehr = parseFloat(document.getElementById("m_mehr").value) || 0;
+
+            const anteil = (komm / umsatz) * 100;
+            const gewinn = (mehr * db) - komm;
+            const breakEven = db > 0 ? komm / db : 0;
+
+            document.getElementById("res_anteil").innerText = anteil.toFixed(1).replace(".", ",") + "%";
+            document.getElementById("res_gewinn").innerText = fmt(gewinn);
+            document.getElementById("res_break").innerText = fmt(breakEven);
+        }
+
+        function calcForward() {
+            const mek = parseFloat(document.getElementById("f_mek").value) || 0;
+            const mgkS = parseFloat(document.getElementById("f_mgk").value) || 0;
+            const flo = parseFloat(document.getElementById("f_flo").value) || 0;
+            const fgkS = parseFloat(document.getElementById("f_fgk").value) || 0;
+            const sekf = parseFloat(document.getElementById("f_sekf").value) || 0;
+            const vwgkS = parseFloat(document.getElementById("f_vwgk").value) || 0;
+            const vertgkS = parseFloat(document.getElementById("f_vertgk").value) || 0;
+            const sekv = parseFloat(document.getElementById("f_sekv").value) || 0;
+            const gewS = parseFloat(document.getElementById("f_gewinn").value) || 0;
+            const skontoS = parseFloat(document.getElementById("f_skonto").value) || 0;
+            const provS = parseFloat(document.getElementById("f_prov").value) || 0;
+            const rabattS = parseFloat(document.getElementById("f_rabatt").value) || 0;
+
+            const mgk = mek * (mgkS / 100);
+            const matKosten = mek + mgk;
+            const zwischenFert = flo + (flo * (fgkS / 100));
+            const fertKostenNur = zwischenFert + sekf;
+            const herstellKosten = matKosten + fertKostenNur;
+
+            const vwgk = herstellKosten * (vwgkS / 100);
+            const vertgk = herstellKosten * (vertgkS / 100);
+            const selbstkosten = herstellKosten + vwgk + vertgk + sekv;
+
+            const gewinn = selbstkosten * (gewS / 100);
+            const barVP = selbstkosten + gewinn;
+
+            const prozentBar = 100 - skontoS - provS;
+            const zielVP = prozentBar > 0 ? barVP / (prozentBar / 100) : 0;
+            const listenVP = (100 - rabattS) > 0 ? zielVP / ((100 - rabattS) / 100) : 0;
+
+            document.getElementById("out_f_mat").innerText = fmt(matKosten);
+            document.getElementById("out_f_fert").innerText = fmt(fertKostenNur);
+            document.getElementById("out_f_herstell").innerText = fmt(herstellKosten);
+            document.getElementById("out_f_selbst").innerText = fmt(selbstkosten);
+            document.getElementById("out_f_bar").innerText = fmt(barVP);
+            document.getElementById("out_f_ziel").innerText = fmt(zielVP);
+            document.getElementById("out_f_listen").innerText = fmt(listenVP);
+        }
+
+        function calcBackward() {
+            const listen = parseFloat(document.getElementById("b_listen").value) || 0;
+            const rabattS = parseFloat(document.getElementById("b_rabatt").value) || 0;
+            const provS = parseFloat(document.getElementById("b_prov").value) || 0;
+            const skontoS = parseFloat(document.getElementById("b_skonto").value) || 0;
+            const gewS = parseFloat(document.getElementById("b_gewinn").value) || 0;
+            const vwgkS = parseFloat(document.getElementById("b_vwgk").value) || 0;
+            const vertgkS = parseFloat(document.getElementById("b_vertgk").value) || 0;
+            const sekv = parseFloat(document.getElementById("b_sekv").value) || 0;
+            const flo = parseFloat(document.getElementById("b_flo").value) || 0;
+            const fgkS = parseFloat(document.getElementById("b_fgk").value) || 0;
+            const sekf = parseFloat(document.getElementById("b_sekf").value) || 0;
+            const mgkS = parseFloat(document.getElementById("b_mgk").value) || 0;
+
+            const zielVP = listen * (1 - rabattS / 100);
+            const barVP = zielVP * (1 - (provS + skontoS) / 100);
+            const selbstkosten = barVP / (1 + gewS / 100);
+            const herstellKosten = (selbstkosten - sekv) / (1 + (vwgkS + vertgkS) / 100);
+            const fertKostenTotal = (flo * (1 + fgkS / 100)) + sekf;
+            const matKosten = herstellKosten - fertKostenTotal;
+            const mek = matKosten / (1 + mgkS / 100);
+
+            document.getElementById("out_b_ziel").innerText = fmt(zielVP);
+            document.getElementById("out_b_bar").innerText = fmt(barVP);
+            document.getElementById("out_b_selbst").innerText = fmt(selbstkosten);
+            document.getElementById("out_b_herstell").innerText = fmt(herstellKosten);
+            document.getElementById("out_b_fert").innerText = fmt(fertKostenTotal);
+            document.getElementById("out_b_mat").innerText = fmt(matKosten);
+            document.getElementById("out_b_mek").innerText = fmt(mek);
+        }
+
+        function calcKLR() {
+            const gm = parseFloat(document.getElementById("klr_gm").value) || 0;
+            const fm = parseFloat(document.getElementById("klr_fm").value) || 1;
+            const gf = parseFloat(document.getElementById("klr_gf").value) || 0;
+            const fl = parseFloat(document.getElementById("klr_fl").value) || 1;
+            const gv = parseFloat(document.getElementById("klr_gv").value) || 0;
+            const gvert = parseFloat(document.getElementById("klr_gvert").value) || 0;
+            const hkUmsatz = parseFloat(document.getElementById("klr_hk_umsatz").value) || 1;
+
+            const mgkSatz = (gm / fm) * 100;
+            const fgkSatz = (gf / fl) * 100;
+            const vwgkSatz = (gv / hkUmsatz) * 100;
+            const vertgkSatz = (gvert / hkUmsatz) * 100;
+
+            document.getElementById("res_mgk").innerText = mgkSatz.toFixed(1).replace(".", ",") + "%";
+            document.getElementById("res_fgk").innerText = fgkSatz.toFixed(1).replace(".", ",") + "%";
+            document.getElementById("res_vwgk").innerText = vwgkSatz.toFixed(1).replace(".", ",") + "%";
+            document.getElementById("res_vertgk").innerText = vertgkSatz.toFixed(1).replace(".", ",") + "%";
+        }
+
+        function calcDB() {
+            const preis = parseFloat(document.getElementById("db_preis").value) || 0;
+            const vKosten = parseFloat(document.getElementById("db_v_kosten").value) || 0;
+            const fix = parseFloat(document.getElementById("db_fix").value) || 0;
+
+            const dbStueck = preis - vKosten;
+            const puKurz = vKosten;
+            const breakEvenStueck = dbStueck > 0 ? Math.ceil(fix / dbStueck) : 0;
+
+            document.getElementById("res_db_stueck").innerText = fmt(dbStueck);
+            document.getElementById("res_pu_kurz").innerText = fmt(puKurz);
+            document.getElementById("res_break_stueck").innerText = breakEvenStueck.toLocaleString("de-DE") + " Stk.";
+        }
+
+        function addCustomItem(type) {
+            const container = document.getElementById(type === 'kapital' ? 'custom_kapital_list' : 'custom_finanzierung_list');
+            const rowClass = type === 'kapital' ? 'custom-kap-row' : 'custom-fin-row';
+            const calcClass = type === 'kapital' ? 'kap-calc' : 'fin-calc';
+
+            const div = document.createElement('div');
+            div.className = `flex gap-2 ${rowClass}`;
+            div.innerHTML = `
+                <input type="text" placeholder="z.B. Kosten/Quelle" class="w-2/3 border rounded-lg p-1.5 text-xs bg-white font-medium c-name">
+                <input type="number" step="0.01" value="0.00" class="w-1/3 border rounded-lg p-1.5 text-xs bg-gray-50 font-bold c-val ${calcClass}">
+                <button onclick="this.parentElement.remove(); calculateAll();" class="text-red-500 font-bold px-1.5 text-xs">✕</button>
+            `;
+            container.appendChild(div);
+            
+            div.querySelector('input[type="number"]').addEventListener('input', calculateAll);
+        }
+
+        function calculateAll() {
+            let bedarf = (parseFloat(document.getElementById("k_gruendung").value) || 0) +
+                           (parseFloat(document.getElementById("k_betrieb").value) || 0) +
+                           (parseFloat(document.getElementById("k_reserve").value) || 0);
+
+            document.querySelectorAll(".custom-kap-row").forEach(row => {
+                bedarf += parseFloat(row.querySelector(".c-val").value) || 0;
+            });
+
+            const resBedarfEl = document.getElementById("res_total_bedarf");
+            if (resBedarfEl) resBedarfEl.innerText = fmt(bedarf);
+
+            let finanzierung = (parseFloat(document.getElementById("f_eigen").value) || 0) +
+                               (parseFloat(document.getElementById("f_foerder").value) || 0) +
+                               (parseFloat(document.getElementById("f_kredit").value) || 0);
+
+            document.querySelectorAll(".custom-fin-row").forEach(row => {
+                finanzierung += parseFloat(row.querySelector(".c-val").value) || 0;
+            });
+
+            const resFinEl = document.getElementById("res_total_fin");
+            if (resFinEl) resFinEl.innerText = fmt(finanzierung);
+
+            const kredit = parseFloat(document.getElementById("f_kredit").value) || 0;
+            const zins = parseFloat(document.getElementById("f_zins").value) || 0;
+            const jahre = parseFloat(document.getElementById("f_jahre").value) || 1;
+            
+            let monatsRate = 0;
+            if (kredit > 0 && zins > 0 && jahre > 0) {
+                const i = zins / 100 / 12;
+                const n = jahre * 12;
+                monatsRate = kredit * (i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
+            } else if (kredit > 0 && jahre > 0) {
+                monatsRate = kredit / (jahre * 12);
+            }
+            const resRateEl = document.getElementById("res_rate");
+            if (resRateEl) resRateEl.innerText = fmt(monatsRate) + " / Mon.";
+
+            const diff = finanzierung - bedarf;
+            const card = document.getElementById("status_card");
+            const icon = document.getElementById("status_icon");
+            const title = document.getElementById("status_title");
+            const val = document.getElementById("status_value");
+            const text = document.getElementById("status_text");
+
+            if (card && icon && title && val && text) {
+                if (diff >= 0) {
+                    card.className = "rounded-xl shadow-md p-6 border transition-all duration-300 bg-green-50 border-green-200 text-center";
+                    icon.innerText = "🎉";
+                    title.innerText = "Finanzierung gesichert!";
+                    title.className = "text-sm font-bold uppercase tracking-wider text-green-800";
+                    val.innerText = "+" + fmt(diff);
+                    val.className = "text-2xl font-black text-green-900 mt-1";
+                    text.innerText = "Hervorragend. Alle geplanten Kosten sind durch deine Finanzierungsquellen abgedeckt.";
+                } else {
+                    card.className = "rounded-xl shadow-md p-6 border transition-all duration-300 bg-red-50 border-red-200 text-center";
+                    icon.innerText = "⚠️";
+                    title.innerText = "Unterdeckung / Kapitalbedarf offen!";
+                    title.className = "text-sm font-bold uppercase tracking-wider text-red-800";
+                    val.innerText = fmt(diff);
+                    val.className = "text-2xl font-black text-red-900 mt-1";
+                    text.innerText = "Achtung. Die geplanten Kosten übersteigen die Finanzierungsquellen. Passe deine Posten oder Kredite an.";
+                }
+            }
+        }
+
+        document.querySelectorAll(".wp-budget").forEach(el => el.addEventListener("input", calcWerbeplanBudget));
+        document.querySelectorAll(".bcg-calc").forEach(el => el.addEventListener("input", calcBCG));
+        document.querySelectorAll(".p-calc").forEach(el => el.addEventListener("input", calc4Ps));
+        document.querySelectorAll(".m-calc").forEach(el => el.addEventListener("input", calcMarketing));
+        document.querySelectorAll(".f-calc").forEach(el => el.addEventListener("input", calcForward));
+        document.querySelectorAll(".b-calc").forEach(el => el.addEventListener("input", calcBackward));
+        document.querySelectorAll(".klr-input").forEach(el => el.addEventListener("input", calcKLR));
+        document.querySelectorAll(".db-calc").forEach(el => el.addEventListener("input", calcDB));
+        document.querySelectorAll(".kap-calc, .fin-calc").forEach(el => el.addEventListener("input", calculateAll));
+
+        calcWerbeplanBudget();
+        calcBCG();
+        calc4Ps();
+        calcMarketing();
+        calcForward();
+        calcBackward();
+        calcKLR();
+        calcDB();
+        calculateAll();
+    </script>
+</body>
+</html>
