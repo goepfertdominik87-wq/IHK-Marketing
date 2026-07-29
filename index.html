@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSK Prüfungs- und Analyse-Tool</title>
+    <style>
+        :root {
+            --anthracite: #2C3E50;
+            --anthracite-dark: #1A252F;
+            --corporate-yellow: #F1C40F;
+            --bg-body: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-main: #2C3E50;
+            --border-color: #BDC3C7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--anthracite);
+            color: #FFFFFF;
+            padding: 20px 30px;
+            border-radius: 6px;
+            border-bottom: 4px solid var(--corporate-yellow);
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        header span {
+            color: var(--corporate-yellow);
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--corporate-yellow);
+            padding-bottom: 8px;
+            color: var(--anthracite);
+        }
+
+        /* Tabellen-Styling für BAB (Anlage 1) */
+        table.ksk-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        table.ksk-table th, table.ksk-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        table.ksk-table th {
+            background-color: var(--anthracite);
+            color: #FFFFFF;
+        }
+
+        table.ksk-table tr:nth-child(even) {
+            background-color: #F2F4F4;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        /* Buchungssätze & Belege Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button.btn-primary {
+            background-color: var(--corporate-yellow);
+            color: var(--anthracite-dark);
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button.btn-primary:hover {
+            background-color: #D4AC0D;
+        }
+
+        /* Beleg-Container (Anlagen 2-4) */
+        .document-preview {
+            background-color: #FFFDF0;
+            border-left: 4px solid var(--corporate-yellow);
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Unterländer Metallwerke GmbH <span>// KSK Abschlussprüfung Sommer 2006</span></h1>
+    </header>
+
+    <!-- Block 1: Kosten- und Leistungsrechnung (BAB / Anlage 1) -->
+    <div class="section-card">
+        <h2>Aufgabe 1: Kosten- und Leistungsrechnung (BAB & Zuschlagssätze)</h2>
+        <table class="ksk-table">
+            <thead>
+                <tr>
+                    <th>Kostenarten</th>
+                    <th class="text-right">Istkosten in €</th>
+                    <th class="text-right">Ist-Zuschlagssätze in %</th>
+                    <th class="text-right">Normalkosten in €</th>
+                    <th class="text-right">Normal-zuschlagssätze in %</th>
+                    <th class="text-right">Über-/Unterdeckung in €</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fertigungsmaterial</td>
+                    <td class="text-right">72.000,00</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                </tr>
+                <tr>
+                    <td>Materialgemeinkosten</td>
+                    <td class="text-right">8.430,00</td>
+                    <td class="text-right">12,00 %</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                </tr>
+                <tr>
+                    <td>Fertigungslöhne</td>
+                    <td class="text-right">36.460,00</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                </tr>
+                <tr>
+                    <td>Fertigungsgemeinkosten</td>
+                    <td class="text-right">52.760,00</td>
+                    <td class="text-right">150,00 %</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                </tr>
+                <tr>
+                    <td>Verwaltungsgemeinkosten</td>
+                    <td class="text-right">16.220,00</td>
+                    <td class="text-right">10,00 %</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                </tr>
+                <tr>
+                    <td>Vertriebsgemeinkosten</td>
+                    <td class="text-right">11.570,00</td>
+                    <td class="text-right">7,00 %</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                    <td class="text-right">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="grid-2">
+        <!-- Block 2: Buchhaltung & Jahresabschluss (Aufgabe 2) -->
+        <div class="section-card">
+            <h2>Aufgabe 2: Buchungssätze erfassen</h2>
+            <div class="form-group">
+                <label for="geschaeftsfall">Geschäftsfall:</label>
+                <select id="geschaeftsfall">
+                    <option>2.1 Anlagenbuchführung buchen</option>
+                    <option>2.2 Skontoabzug per Bank (3 %)</option>
+                    <option>2.3 Bankdarlehen (Agio aktivieren)</option>
+                    <option>2.4 Prozesskosten & Rückstellung</option>
+                    <option>2.5 Disagio zeitanteilig buchen</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="buchungssatz">Buchungssatz (Soll an Haben):</label>
+                <input type="text" id="buchungssatz" placeholder="z.B. Konto Soll an Konto Haben">
+            </div>
+            <div class="form-group">
+                <label for="betrag">Betrag in €:</label>
+                <input type="text" id="betrag" placeholder="0,00">
+            </div>
+            <button class="btn-primary">Buchung prüfen</button>
+        </div>
+
+        <!-- Block 3: Belegprüfung (Anlagen 2-4) -->
+        <div class="section-card">
+            <h2>Beleganalyse (Originalbelege)</h2>
+            <div class="form-group">
+                <label for="beleg-select">Beleg auswählen:</label>
+                <select id="beleg-select">
+                    <option>Rechnung Nr. 3784 (Düsseldorfer Stahlbau AG)</option>
+                    <option>Gutschrift Nr. 3784/1</option>
+                    <option>Rechnung Volkswagen AG (Anlage 4)</option>
+                </select>
+            </div>
+            <div class="document-preview">
+                Düsseldorfer Stahlbau AG - 16.06.2005
+                An: Unterländer Metallwerke GmbH
+                ----------------------------------------
+                Pos. 1: 90 STK Vierkantstahlrohr Q3 à 20,00 € = 1.800,00 €
+                Pos. 2: 120 STK Stahlplatte M6 à 10,00 € = 1.200,00 €
+                ----------------------------------------
+                Total EUR ohne MwSt: 3.000,00 €
+                + Fracht: 100,00 € | Verpackung: 50,00 €
+                Summe: 3.150,00 €
+                + 16% MwSt: 504,00 €
+                <strong>Total EUR incl. MwSt: 3.654,00 €</strong>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
