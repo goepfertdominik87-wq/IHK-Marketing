@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSK & Material-Operations-Pipeline // Unterländer Metallwerke GmbH</title>
+    <style>
+        :root {
+            --anthracite: #2C3E50;
+            --anthracite-dark: #1A252F;
+            --corporate-yellow: #F1C40F;
+            --corporate-yellow-hover: #D4AC0D;
+            --bg-body: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-main: #2C3E50;
+            --border-color: #BDC3C7;
+            --success-color: #27AE60;
+            --danger-color: #C0392B;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--anthracite);
+            color: #FFFFFF;
+            padding: 20px 30px;
+            border-radius: 8px;
+            border-bottom: 5px solid var(--corporate-yellow);
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        header span {
+            color: var(--corporate-yellow);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1000px) {
+            .row-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--corporate-yellow);
+            padding-bottom: 8px;
+            color: var(--anthracite);
+        }
+
+        /* Tabellen-Styling (BAB) */
+        table.ksk-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        table.ksk-table th, table.ksk-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        table.ksk-table th {
+            background-color: var(--anthracite);
+            color: #FFFFFF;
+        }
+
+        table.ksk-table tr:nth-child(even) {
+            background-color: #F2F4F4;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+
+        button.btn-primary {
+            background-color: var(--corporate-yellow);
+            color: var(--anthracite-dark);
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        button.btn-primary:hover {
+            background-color: var(--corporate-yellow-hover);
+        }
+
+        .document-preview {
+            background-color: #FFFDF0;
+            border-left: 4px solid var(--corporate-yellow);
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            white-space: pre-line;
+            border-radius: 0 4px 4px 0;
+            line-height: 1.4;
+        }
+
+        .alert-box {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .alert-success {
+            background-color: #D4EFDF;
+            color: var(--success-color);
+            border: 1px solid #A9DFBF;
+        }
+
+        .pipeline-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .stat-card {
+            background-color: #F8F9FA;
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .stat-card span {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--anthracite);
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Unterländer Metallwerke GmbH <span>// KSK & Material-Pipeline Tool</span></h1>
+        <div>Modul: Materialmanagement & Controlling</div>
+    </header>
+
+    <div class="dashboard-grid">
+        
+        <!-- Block 1: Betriebsbuchhaltung & BAB (Aufgabe 1) -->
+        <div class="section-card">
+            <h2>Aufgabe 1: Betriebsabrechnungsbogen (BAB) & Zuschlagssätze (Ist 2004 / 2005)</h2>
+            <table class="ksk-table">
+                <thead>
+                    <tr>
+                        <th>Kostenarten</th>
+                        <th class="text-right">Istkosten in €</th>
+                        <th class="text-right">Ist-Zuschlagssätze in %</th>
+                        <th class="text-right">Normalkosten in €</th>
+                        <th class="text-right">Normal-zuschlagssätze in %</th>
+                        <th class="text-right">Über-/Unterdeckung in €</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Fertigungsmaterial</td>
+                        <td class="text-right">72.000,00</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">-</td>
+                    </tr>
+                    <tr>
+                        <td>Materialgemeinkosten</td>
+                        <td class="text-right">8.430,00</td>
+                        <td class="text-right" id="res-mgk">11,71 %</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">12,00 %</td>
+                        <td class="text-right" style="color: var(--success-color);">Überdeckung</td>
+                    </tr>
+                    <tr>
+                        <td>Fertigungslöhne</td>
+                        <td class="text-right">36.460,00</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">-</td>
+                    </tr>
+                    <tr>
+                        <td>Fertigungsgemeinkosten</td>
+                        <td class="text-right">52.760,00</td>
+                        <td class="text-right" id="res-fgk">144,71 %</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">150,00 %</td>
+                        <td class="text-right" style="color: var(--success-color);">Überdeckung</td>
+                    </tr>
+                    <tr>
+                        <td>Verwaltungsgemeinkosten</td>
+                        <td class="text-right">16.220,00</td>
+                        <td class="text-right">10,00 %</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">10,00 %</td>
+                        <td class="text-right">0,00 €</td>
+                    </tr>
+                    <tr>
+                        <td>Vertriebsgemeinkosten</td>
+                        <td class="text-right">11.570,00</td>
+                        <td class="text-right">7,00 %</td>
+                        <td class="text-right">-</td>
+                        <td class="text-right">7,00 %</td>
+                        <td class="text-right">0,00 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row-2">
+            <!-- Block 2: Buchhaltung & Jahresabschluss (Aufgabe 2) -->
+            <div class="section-card">
+                <h2>Aufgabe 2: Buchungssätze & Geschäftsfälle</h2>
+                <div class="form-group">
+                    <label for="geschaeftsfall">Geschäftsfall auswählen:</label>
+                    <select id="geschaeftsfall" onchange="loadBookingTemplate()">
+                        <option value="2.1">2.1 Anlagenbuchführung (Abschreibungen/Zugänge)</option>
+                        <option value="2.2">2.2 Kundenzahlung mit 3% Skonto per Bank</option>
+                        <option value="2.3">2.3 Bankdarlehen (100.000 € nominal, 97% Auszahlung, Agio)</option>
+                        <option value="2.4">2.4 Prozesskosten & Rückstellungsausgleich</option>
+                        <option value="2.5">2.5 Disagio zeitanteilig buchen zum 31.12.</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="buchungssatz">Buchungssatz (Soll an Haben):</label>
+                    <input type="text" id="buchungssatz" value="2800 Bank / 1300 Forderungen an 0860 ...">
+                </div>
+                <div class="form-group">
+                    <label for="betrag">Betrag in €:</label>
+                    <input type="text" id="betrag" value="3.540,38">
+                </div>
+                <button class="btn-primary" onclick="validateBooking()">Buchungssatz prüfen</button>
+                <div id="alert-box" class="alert-box alert-success">Buchungssatz entspricht den Buchungsrichtlinien!</div>
+            </div>
+
+            <!-- Block 3: Belegprüfung & Dokumentenanalyse (Anlagen 2-4) -->
+            <div class="section-card">
+                <h2>Beleganalyse & Stammdaten (Anlagen 2–4)</h2>
+                <div class="form-group">
+                    <label for="beleg-select">Beleg / Dokument:</label>
+                    <select id="beleg-select" onchange="updateDocumentView()">
+                        <option value="3784">Rechnung Nr. 3784 (Düsseldorfer Stahlbau AG)</option>
+                        <option value="3784_1">Gutschrift Nr. 3784/1 (Teilretoure)</option>
+                        <option value="vw">Rechnung Volkswagen AG (Anlage 4)</option>
+                    </select>
+                </div>
+                <div class="document-preview" id="doc-view">
+Düsseldorfer Stahlbau AG - 16.06.2005 (Anlage 2)
+An: Unterländer Metallwerke GmbH, Im Lehen 5, 72622 Nürtingen
+---------------------------------------------------------
+Pos. 1: 90 STK Vierkantstahlrohr Q3 à 20,00 € = 1.800,00 €
+Pos. 2: 120 STK Stahlplatte M6 à 10,00 €     = 1.200,00 €
+---------------------------------------------------------
+Warenwert netto:  3.000,00 €
++ Fracht:           100,00 €
++ Verpackung:        50,00 €
+Zwischensumme:    3.150,00 €
++ 16% MwSt:         504,00 €
+<strong>Gesamtbetrag inkl. MwSt: 3.654,00 €</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block 4: Procurement Data Pipeline & TCO Analytics (Ergänzendes Modul) -->
+        <div class="section-card">
+            <h2>Material- & Beschaffungs-Pipeline (TCO-Modellierung)</h2>
+            <p>Automatisierte Datenbereinigung und Kostenstrukturanalyse für das Bestandsmanagement:</p>
+            <div class="pipeline-stats">
+                <div class="stat-card">
+                    Verarbeitete Positionen
+                    <span>1.428</span>
+                </div>
+                <div class="stat-card">
+                    Material-Einstandswert
+                    <span>214.350,00 €</span>
+                </div>
+                <div class="stat-card">
+                    Pipeline Status
+                    <span style="color: var(--success-color);">Aktiv / Bereit</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function loadBookingTemplate() {
+            const val = document.getElementById('geschaeftsfall').value;
+            const input = document.getElementById('buchungssatz');
+            const amount = document.getElementById('betrag');
+            
+            if(val === '2.1') {
+                input.value = "6520 Abschreibungen an 0... Technische Anlagen";
+                amount.value = "12.500,00";
+            } else if(val === '2.2') {
+                input.value = "2800 Bank / 5780 Skonti / 0% MwSt an 1200 Forderungen L+L";
+                amount.value = "Bestellwert abzgl. 3%";
+            } else if(val === '2.3') {
+                input.value = "2800 Bank (97%) / 0980 Disagio (3%) an 4250 Bankdarlehen (100%)";
+                amount.value = "100.000,00";
+            } else if(val === '2.4') {
+                input.value = "3930 Rückstellungen / 6900 Periodenfremde Aufwendungen an 2800 Bank";
+                amount.value = "9.500,00";
+            } else if(val === '2.5') {
+                input.value = "6310 Zinsaufwendungen an 0980 Disagio";
+                amount.value = "Zeitanteiliger Betrag";
+            }
+            document.getElementById('alert-box').style.display = 'none';
+        }
+
+        function validateBooking() {
+            const box = document.getElementById('alert-box');
+            box.style.display = 'block';
+            setTimeout(() => {
+                box.style.display = 'none';
+            }, 4000);
+        }
+
+        function updateDocumentView() {
+            const select = document.getElementById('beleg-select').value;
+            const view = document.getElementById('doc-view');
+            if(select === '3784_1') {
+                view.innerHTML = `Gutschrift Nr. 3784/1 - 18.06.2005 (Anlage 3)\nAn: Unterländer Metallwerke GmbH\n---------------------------------------------------------\nPos. 2: 120 STK Stahlplatte M6 à 10,00 € = 1.200,00 €\n+ 16% MwSt: 192,00 €\n---------------------------------------------------------\n<strong>Gesamtbetrag Gutschrift: 1.392,00 €</strong>`;
+            } else if(select === 'vw') {
+                view.innerHTML = `Volkswagen AG - Auftrags- und Rechnungsdaten (Anlage 4)\nRechnungsnummer: 5546/05 | Datum: 05-06-2005\nKundennummer: 26689\n---------------------------------------------------------\nKomponentenfertigung Blechteile für Automobilindustrie.\nStatus: Abgeglichen mit Bestandsplanung 2005.`;
+            } else {
+                view.innerHTML = `Düsseldorfer Stahlbau AG - 16.06.2005 (Anlage 2)\nAn: Unterländer Metallwerke GmbH, Im Lehen 5, 72622 Nürtingen\n---------------------------------------------------------\nPos. 1: 90 STK Vierkantstahlrohr Q3 à 20,00 € = 1.800,00 €\nPos. 2: 120 STK Stahlplatte M6 à 10,00 €     = 1.200,00 €\n---------------------------------------------------------\nWarenwert netto:  3.000,00 €\n+ Fracht:           100,00 €\n+ Verpackung:        50,00 €\nZwischensumme:    3.150,00 €\n+ 16% MwSt:         504,00 €\n<strong>Gesamtbetrag inkl. MwSt: 3.654,00 €</strong>`;
+            }
+        }
+    </script>
+</body>
+</html>
